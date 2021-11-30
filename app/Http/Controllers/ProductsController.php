@@ -30,8 +30,28 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $orderProducts = $request->get('orderProducts');
+
+        if ($orderProducts == 1) {
+            $products = Product::orderBy('titulo')->get();
+        }
+
+        if ($orderProducts == 2) {
+            $products = Product::orderBy('precio')->get();
+        }
+
+        if ($orderProducts == 3) {
+            $products = Product::orderBy('precio', 'DESC')->get();
+        }
+
+        if ($orderProducts == 4) {
+            $products = Product::orderBy('fecha_inicio')->get();
+        }
+
+        return response()->json([
+            'products' => $products
+        ]);
     }
 }

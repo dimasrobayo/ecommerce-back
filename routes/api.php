@@ -17,8 +17,6 @@ use App\Http\Controllers\ProductsController;
 */
 
 // Get all Products
-Route::post('products', [ProductsController::class,'index']); // get all products
+Route::post('products', [ProductsController::class, 'index']); // get all products
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('filters', [ProductsController::class, 'show']); // get filter products
